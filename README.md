@@ -44,13 +44,13 @@ OPENAI_API_KEY=your_openai_api_key
 Build the Book Index
 Before running the app, generate the ChromaDB index:
 
-bash
-Copy code
+
+Copy code:
 python main.py
-This step loads data/books.csv and stores embeddings in the chromadb_data/ folder.
+
 
 Run the Application
-bash
+
 Copy code
 python app.py
 
@@ -70,30 +70,6 @@ Receive a recommendation with a complete description
 
 View, copy, or save previous searches
 
-Project Structure
-bash
-Copy code
-book-recommendation-bot/
-├── app.py                 # Flask app (UI + API)
-├── main.py                # Script for indexing books in ChromaDB
-├── data/
-│   └── books.csv          # Book database
-├── templates/
-│   └── index.html         # HTML frontend
-├── static/
-│   ├── app.js             # UI logic
-│   └── styles.css         # Custom styles
-├── requirements.txt       # Python dependencies
-├── .env                   # Local configuration (API keys, directories)
-└── README.md              # Project documentation
-Notes
-The ChromaDB index only needs to be built once with main.py
 
-Querying recommendations through the app does not re-consume tokens, unless new embeddings are created
-
-For production use, run the app behind a WSGI server (e.g., Gunicorn) instead of Flask’s development server
-
-yaml
-Copy code
 
 ---
