@@ -1,4 +1,4 @@
-# app.py — Flask + exact-title bypass + OpenAI function calling + ChromaDB RAG (fixed)
+
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -33,21 +33,14 @@ vectorstore = Chroma(
 QUOTES_RE = re.compile(r'^[\s"\']*(.*?)[\s"\']*$')
 
 def _normalize_title(s: str) -> str:
-    """
-    Normalizeaza inputul pentru comparatii stricte pe titlu:
-    - taie spatiile si ghilimelele la extremitati
-    - foloseste casefold pentru comparatie robusta
-    """
+    
     if not s:
         return ""
     s = QUOTES_RE.sub(r"\1", s.strip())
     return s.casefold()
 
 def find_exact_title_summary(user_text: str):
-    """
-    Daca user_text este un titlu exact (match pe metadata['title']),
-    intoarce (True, page_content). Altfel, (False, None).
-    """
+    
     norm = _normalize_title(user_text)
     if not norm:
         return False, None
@@ -174,7 +167,7 @@ def recommend():
                     )
                     return jsonify({"recommendation": followup.choices[0].message.content})
 
-        # Fallback daca nu s-a apelat tool-ul
+        # Fallback
         return jsonify({"recommendation": message.content})
 
     except Exception as e:
