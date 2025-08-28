@@ -1,4 +1,3 @@
-# main.py — build ChromaDB index from data/books.csv
 from dotenv import load_dotenv
 import langchain_community.vectorstores
 from langchain_openai import OpenAIEmbeddings
