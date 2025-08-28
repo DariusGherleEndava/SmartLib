@@ -1,6 +1,6 @@
 # Book Recommendation Bot
 
-![Book Recommendation Bot Screenshot](assets/screenshot.png)
+![Book Recommendation Bot Screenshot](assets/img.png)
 
 A personalized book recommendation application that provides tailored book suggestions based on user preferences and favorite genres.  
 Powered by **Flask**, **ChromaDB**, and **OpenAI** for contextual recommendations.
