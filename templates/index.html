@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Recommendation Bot</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-300">
+  <!-- Containere generale -->
+  <div class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header class="border-b bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <div class="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-2xl bg-gray-900 text-white flex items-center justify-center font-semibold">BR</div>
+          <div>
+            <h1 class="text-lg font-semibold">Book Recommendation Bot</h1>
+            <p class="text-xs text-gray-500">RAG + Tool calling (ChromaDB + GPT)</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="themeToggle" class="px-3 py-1.5 rounded-xl border text-sm hover:bg-gray-50">
+            Dark mode
+          </button>
+          <a href="https://github.com" target="_blank" class="hidden md:inline-block px-3 py-1.5 rounded-xl border text-sm hover:bg-gray-50">Docs</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Continut -->
+    <main class="flex-1">
+      <section class="mx-auto max-w-5xl px-4 py-8 grid md:grid-cols-5 gap-6">
+        <!-- Panou input -->
+        <div class="md:col-span-3">
+          <div class="rounded-2xl border bg-white shadow-sm p-5">
+            <h2 class="text-base font-semibold mb-3">Cautare recomandare</h2>
+            <p class="text-sm text-gray-500 mb-4">
+              Scrie o dorinta sau tematica (ex: <i>recomanda ceva cu prietenie si magie</i>). Sistemul va alege o singura carte si va adauga rezumatul din baza.
+            </p>
+
+            <form id="queryForm" class="space-y-3" autocomplete="off">
+              <!-- Comentarii in cod sunt fara diacritice -->
+              <!-- Input user -->
+              <label class="block">
+                <span class="text-sm font-medium">Prompt</span>
+                <textarea id="q" rows="3" class="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-900"
+                  placeholder="ex: recomanda o carte despre prietenie si magie, ton cald si optimist"></textarea>
+              </label>
+
+              <!-- Actiuni -->
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-xs text-gray-500">
+                  Scurtatura: <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">Enter</kbd> pentru trimitere
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="clearBtn" class="px-3 py-2 rounded-xl border text-sm hover:bg-gray-50">
+                    Curata
+                  </button>
+                  <button type="submit" id="submitBtn" class="px-4 py-2 rounded-xl bg-gray-900 text-white text-sm hover:opacity-90 disabled:opacity-60">
+                    Cauta cartea
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Loading -->
+            <div id="loading" class="hidden mt-4 flex items-center gap-3 text-sm text-gray-600">
+              <span class="loader"></span> Se proceseaza cererea...
+            </div>
+
+            <!-- Eroare -->
+            <div id="errorBox" class="hidden mt-4 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"></div>
+          </div>
+
+          <!-- Rezultat -->
+          <div class="mt-6 rounded-2xl border bg-white shadow-sm p-5">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-base font-semibold">Recomandare</h3>
+              <div class="flex items-center gap-2">
+                <button id="copyBtn" class="px-3 py-1.5 rounded-xl border text-xs hover:bg-gray-50">Copiaza</button>
+                <button id="saveSnippetBtn" class="px-3 py-1.5 rounded-xl border text-xs hover:bg-gray-50">Salveaza in istoric</button>
+              </div>
+            </div>
+            <pre id="out" class="prose prose-sm max-w-none whitespace-pre-wrap leading-relaxed text-gray-800"></pre>
+          </div>
+        </div>
+
+        <!-- Panou istoric -->
+        <aside class="md:col-span-2">
+          <div class="rounded-2xl border bg-white shadow-sm p-5 sticky top-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-base font-semibold">Istoric cautari</h3>
+              <button id="clearHistoryBtn" class="px-3 py-1.5 rounded-xl border text-xs hover:bg-gray-50">Goleste</button>
+            </div>
+            <p class="text-sm text-gray-500 mb-3">Click pe un item pentru a re-incarca promptul.</p>
+            <ul id="historyList" class="space-y-2"></ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t bg-white/70">
+      <div class="mx-auto max-w-5xl px-4 py-6 text-xs text-gray-500">
+        <p>&copy; <span id="year"></span> Book Recommendation Bot. Construit cu Flask, ChromaDB si GPT.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

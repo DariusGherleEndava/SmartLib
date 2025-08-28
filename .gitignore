@@ -1,0 +1,7 @@
+data/books.csv
+chromadb_data/
+.env
+.venv/
+venv/
+__pycache__/
+.idea/

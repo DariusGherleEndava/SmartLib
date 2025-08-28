@@ -1,0 +1,80 @@
+
+.kbd {
+  border: 1px solid #e5e7eb;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: #f9fafb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+}
+.loader {
+  width: 16px; height: 16px;
+  border: 2px solid #d1d5db; border-top-color: #111827;
+  border-radius: 50%; animation: spin .8s linear infinite; display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* -------- DARK MODE -------- */
+.dark { background-color: #0b0f19; color: #e5e7eb; }
+
+.dark header,
+.dark footer {
+  background: rgba(15,23,42,0.7) !important;
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-color: #1f2937 !important;
+}
+
+.dark .border { border-color: #1f2937 !important; }
+.dark .bg-white { background-color: #0f172a !important; }
+
+.dark .bg-white\/70 { background-color: rgba(15,23,42,0.7) !important; }
+.dark .supports-\[backdrop-filter\]\:bg-white\/60 { background-color: rgba(15,23,42,0.6) !important; }
+
+.dark .text-gray-900,
+.dark .text-gray-800 { color: #e5e7eb !important; }
+.dark .text-gray-700 { color: #e2e8f0 !important; }
+.dark .text-gray-600,
+.dark .text-gray-500 { color: #94a3b8 !important; }
+
+.dark .hover\:bg-gray-50:hover { background-color: #111827 !important; }
+
+.dark textarea,
+.dark input,
+.dark select {
+  background-color: #0b1220 !important;
+  color: #e5e7eb !important;
+  border-color: #1f2937 !important;
+}
+.dark ::placeholder { color: #6b7280; }
+
+.dark #errorBox {
+  background-color: rgba(239,68,68,0.10) !important;  /* ~red-500 la 10% */
+  border-color: rgba(239,68,68,0.35) !important;
+  color: #fecaca !important; /* red-200 pe dark */
+}
+
+.dark .prose { color: #e5e7eb !important; }
+.dark pre#out { color: #e5e7eb !important; }
+
+.dark .border:not(.bg-gray-900) { border-color: #30363d !important; }
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #ffffff !important;
+}
+
+.dark button {
+  color: #ffffff !important;
+  background-color: #1f2937 !important;   /* un gri inchis */
+  border-color: #374151 !important;       /* gri mai deschis pentru border */
+}
+
+.dark button.bg-gray-900 {
+  background-color: #111827 !important;   /* ramane mai inchis */
+  color: #ffffff !important;
+  border-color: #111827 !important;
+}

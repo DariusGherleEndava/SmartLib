@@ -1,0 +1,16 @@
+# Server web
+flask
+
+# OpenAI SDK
+openai
+
+# Chroma vector database
+chromadb
+
+# LangChain
+langchain
+langchain-openai
+
+langchain-chroma
+
+python-dotenv
